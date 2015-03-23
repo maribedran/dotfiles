@@ -9,14 +9,14 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 shopt -s histappend                      # append to history, don't overwrite it
 
-setterm -bfreq 0
+#setterm -bfreq 0
 export EDITOR=vim
 
 #this fucks up the control+key shortcuts
 #set -o vi
 
 source ~/.git-completion.bash
-export PS1='[\u@\h \w$(__git_ps1 "(%s)")]\$ '
+export PS1='\[\033[01;35m\]\u@\h\[\033[01;33m\]\w\[\033[01;31m\]$(__git_ps1)\[\033[01;35m\] \$\[\033[00m\] '
 if [ $TERM = "screen" ]
 then
     # If we're using screen, include <ESC>k<ESC>\
