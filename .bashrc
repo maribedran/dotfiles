@@ -36,3 +36,9 @@ function fontsize() {
 which rlwrap > /dev/null 2>&1 && alias guile="rlwrap guile"
 
 #source $HOME/.coderc
+export TERM=xterm-256color
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
