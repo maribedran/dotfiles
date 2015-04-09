@@ -6,6 +6,8 @@ syntax on
 set nocp
 set nobackup
 
+autocmd VimEnter * NERDTree
+
 " Navigation
 set mouse=a
 set bs=2
