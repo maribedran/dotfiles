@@ -207,7 +207,7 @@ let g:neocomplcache_enable_at_startup = 1
 " " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 2
+let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " " Enable heavy features.
@@ -225,7 +225,7 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 "
 " For cursor moving in insert mode(Not recommended)
 inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
