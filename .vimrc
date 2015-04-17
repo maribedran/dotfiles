@@ -173,7 +173,7 @@ set path+=
 
 "Python code completion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-let g:pydiction_location='/home/flavio/.vim/complete_dict'
+let g:pydiction_location='/home/maribedran/.vim/complete_dict'
 
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
