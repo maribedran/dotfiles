@@ -32,7 +32,6 @@ set smartindent
 inoremap # X#
 set autoindent
 filetype indent on
-set textwidth=79
 
 " Create file with pah shortcut
 command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
