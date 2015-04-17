@@ -5,6 +5,7 @@ syntax on
 
 set nocp
 set nobackup
+set noswapfile
 
 autocmd VimEnter * NERDTree
 
