@@ -22,11 +22,16 @@ set magic
 set is hls ic scs
 
 " Tab
-set expandtab
-set tabstop=4
-set smarttab
-set softtabstop=4
-set shiftwidth=4
+
+autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+
+"set expandtab
+"set tabstop=4
+"set smarttab
+"set softtabstop=4
+"set shiftwidth=4
 "auto ident that doesn't make comments go to the begging of a line
 set smartindent
 inoremap # X#
