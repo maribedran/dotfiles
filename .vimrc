@@ -56,24 +56,27 @@ set laststatus=1
 
 "colorscheme synic
 " For some reason synic colorscheme does not work on gnome-terminal
-"if ($COLORTERM == 'gnome-terminal')
-"    colorscheme desert
-"endif
-
-if has("gui_running")
-   set guioptions-=T " disable toolbar
-   set guioptions-=t " disable tear-off
-   set guioptions-=m " disable menu
-   set guioptions-=l
-   set guioptions-=r
-   set guioptions-=b
-
-   colorscheme synic
-   set gfn=Inconsolata\ 15
-   set lines=40 columns=90
+if ($COLORTERM == 'gnome-terminal')
+    colorscheme desert
 endif
 
-let g:molokai_original = 1
+"if has("gui_running")
+"   set guioptions-=T " disable toolbar
+"   set guioptions-=t " disable tear-off
+"   set guioptions-=m " disable menu
+"   set guioptions-=l
+"   set guioptions-=r
+"   set guioptions-=b
+"
+"   colorscheme synic
+"   set gfn=Inconsolata\ 15
+"   set lines=40 columns=90
+"endif
+"
+"let g:molokai_original = 1
+
+colors zenburn
+
 
 " highlight characters after 80 columns
 highlight OverLength ctermbg=lightred ctermfg=black guibg=#592929
