@@ -96,7 +96,7 @@ if (&termencoding == "utf-8") || has("gui_running")
     else
         set list listchars=tab:»\ ,trail:·,extends:…
     endif
-else
+  else
     if v:version >= 700
         set list listchars=tab:>\ ,trail:.,extends:>,nbsp:_
     else
@@ -247,3 +247,52 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+"""""""""""""""""""""""""""
+" Pulg installed pluggins "
+"""""""""""""""""""""""""""
+
+" start vim-plug
+call plug#begin('~/.vim/plugged')
+
+" Syntastic
+Plug 'scrooloose/syntastic'
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 2
+
+let g:syntastic_error_symbol = "X"
+let g:syntastic_style_error_symbol = ">"
+let g:syntastic_warning_symbol = "!"
+let g:syntastic_style_warning_symbol = ">"
+
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_no_include_search = 0
+" let g:syntastic_cpp_compiler_options = " -std=c++11"
+
+let g:syntastic_loc_list_height = 3
+
+let g:syntastic_python_checkers=['python', 'flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,F403,E265'
+
+let g:syntastic_html_checkers=['jshint']
+
+let g:syntastic_javascript_checkers=['standard']
+
+let g:syntastic_less_checkers=['lessc']
+
+let g:syntastic_css_checkers=['csslint']
+
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
+let g:syntastic_auto_loc_list=1
+nnoremap <silent> <F5> :SyntasticCheck<CR>
+
+" CtrlP
+Plug 'https://github.com/kien/ctrlp.vim'
+
+call plug#end()
