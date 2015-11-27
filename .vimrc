@@ -257,7 +257,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 call plug#begin('~/.vim/plugged')
 
 " Syntastic
-Plug 'scrooloose/syntastic'
+Plug 'https://github.com/scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
