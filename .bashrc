@@ -42,3 +42,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
+alias manage='python project/manage.py'
+alias test='python project/manage.py test'
+alias runserver='python project/manage.py runserver 0.0.0.0:8000'
