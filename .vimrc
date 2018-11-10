@@ -38,9 +38,28 @@ inoremap # X#
 set autoindent
 filetype indent on
 
+" Paste
+
+" Paste without yanking selected text
+xnoremap p pgvy
+
 " Create file with pah shortcut
 command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
 
+" Buffer
+set ma
+
+" Plug
+"
+call plug#begin('~/.vim/plugged')
+Plug 'kien/ctrlp.vim'
+Plug 'chiel92/vim-autoformat'
+Plug 'Valloric/YouCompleteMe'
+Plug 'nvie/vim-flake8'
+Plug 'nightsense/snow'
+Plug 'aunsira/macvim-light'
+"Plug 'scrooloose/syntastic'
+call plug#end()
 
 """"""""""""""""""""""""""""""
 " Color and UI configuration "
@@ -54,28 +73,9 @@ set ruler
 set showcmd
 set laststatus=1
 
-"colorscheme synic
-" For some reason synic colorscheme does not work on gnome-terminal
-if ($COLORTERM == 'gnome-terminal')
-    colorscheme desert
-endif
-
-"if has("gui_running")
-"   set guioptions-=T " disable toolbar
-"   set guioptions-=t " disable tear-off
-"   set guioptions-=m " disable menu
-"   set guioptions-=l
-"   set guioptions-=r
-"   set guioptions-=b
-"
-"   colorscheme synic
-"   set gfn=Inconsolata\ 15
-"   set lines=40 columns=90
-"endif
-"
-"let g:molokai_original = 1
-
 colors zenburn
+set background=light
+" colorscheme snow
 
 
 " highlight characters after 80 columns
@@ -166,6 +166,19 @@ inoremap <C-space> <C-p>
 imap <Nul> <C-p>
 map <F9> :NERDTreeMirror<return>
 map <F10> :NERDTreeToggle<return>
+noremap <F3> :Autoformat<CR>
+cnoreabbrev W w
+cnoreabbrev Q q
+
+
+""""""""""
+" Flake8 "
+""""""""""
+
+" Call Flake8 on write command
+autocmd BufWritePost *.py call Flake8()
+
+let g:flake8_show_in_gutter=1  " show
 
 
 """"""""""""""""""""""""""""""""""""
@@ -175,13 +188,13 @@ map <F10> :NERDTreeToggle<return>
 "" Python
 
 " Include system python in path
-set path+=/usr/lib/python2.5/site-packages/
+set path+=/usr/lib/python3.6/site-packages/
 " Include current dir in path
 set path+=
 
 "Python code completion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-let g:pydiction_location='/home/maribedran/.vim/complete_dict'
+let g:pydiction_location='~/.vim/complete_dict'
 
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
@@ -190,19 +203,19 @@ autocmd FileType python compiler pylint "Use pylint as a Python compiler
 let g:pylint_cwindow = 0
 let g:pylint_onwrite = 0
 
+" Prevent autoindent when typing :
+autocmd FileType python setlocal indentkeys-=<:>
+autocmd FileType python setlocal indentkeys-=:
+
 " ledger
 autocmd BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
 let g:ledger_maxwidth = 70
 let g:ledger_fillstring = '·'
 
-" LaTeX
-autocmd FileType tex set spell spelllang=pt_br
-
 " Other languages
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd BufNewFile,BufRead *.pde setf arduino
 autocmd FileType c set noexpandtab
 
 
@@ -247,52 +260,3 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-
-"""""""""""""""""""""""""""
-" Pulg installed pluggins "
-"""""""""""""""""""""""""""
-
-" start vim-plug
-call plug#begin('~/.vim/plugged')
-
-" Syntastic
-Plug 'https://github.com/scrooloose/syntastic'
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_loc_list = 2
-
-let g:syntastic_error_symbol = "X"
-let g:syntastic_style_error_symbol = ">"
-let g:syntastic_warning_symbol = "!"
-let g:syntastic_style_warning_symbol = ">"
-
-let g:syntastic_cpp_compiler = "g++"
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_no_include_search = 0
-" let g:syntastic_cpp_compiler_options = " -std=c++11"
-
-let g:syntastic_loc_list_height = 3
-
-let g:syntastic_python_checkers=['python', 'flake8']
-let g:syntastic_python_flake8_args='--ignore=E501,F403,E265'
-
-let g:syntastic_html_checkers=['jshint']
-
-let g:syntastic_javascript_checkers=['standard']
-
-let g:syntastic_less_checkers=['lessc']
-
-let g:syntastic_css_checkers=['csslint']
-
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': [] }
-let g:syntastic_auto_loc_list=1
-nnoremap <silent> <F5> :SyntasticCheck<CR>
-
-" CtrlP
-Plug 'https://github.com/kien/ctrlp.vim'
-
-call plug#end()
