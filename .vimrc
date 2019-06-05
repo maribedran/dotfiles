@@ -23,7 +23,7 @@ set is hls ic scs
 
 " Tab
 
-autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType * set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
@@ -58,6 +58,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'nvie/vim-flake8'
 Plug 'nightsense/snow'
 Plug 'aunsira/macvim-light'
+Plug 'brooth/far.vim'
 "Plug 'scrooloose/syntastic'
 call plug#end()
 
@@ -73,14 +74,14 @@ set ruler
 set showcmd
 set laststatus=1
 
-colors zenburn
+" colors zenburn
 set background=light
-" colorscheme snow
+colorscheme snow
 
 
-" highlight characters after 80 columns
+" highlight characters after 120 columns
 highlight OverLength ctermbg=lightred ctermfg=black guibg=#592929
-match OverLength /\%81v.*/
+match OverLength /\%121v.*/
 
 
 """"""""""""""""""""""""""""
@@ -168,7 +169,9 @@ map <F9> :NERDTreeMirror<return>
 map <F10> :NERDTreeToggle<return>
 noremap <F3> :Autoformat<CR>
 cnoreabbrev W w
+cnoreabbrev Wq wq
 cnoreabbrev Q q
+cnoreabbrev Qa qa
 
 
 """"""""""
@@ -179,6 +182,16 @@ cnoreabbrev Q q
 autocmd BufWritePost *.py call Flake8()
 
 let g:flake8_show_in_gutter=1  " show
+
+
+""""""""""""""""
+" Ignore paths "
+""""""""""""""""
+
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|build)|(\.(swp|ico|git|svn|pyc))$'
+
+set wildignore+=**/node_modules/**,**/__pycache__/**,**/dist/**,**/build/**,**/env/**
+
 
 
 """"""""""""""""""""""""""""""""""""
