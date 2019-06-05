@@ -42,6 +42,16 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-alias manage='python project/manage.py'
-alias test='python project/manage.py test'
-alias runserver='python project/manage.py runserver 0.0.0.0:8000'
+alias activate='source env/bin/activate'
+
+alias manage='python manage.py'
+alias test='python manage.py test'
+alias runserver='python manage.py runserver'
+
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gd='git diff'
+alias pull='git pull'
+alias push='git push'
+alias stash='git stash'
