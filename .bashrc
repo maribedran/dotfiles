@@ -38,10 +38,6 @@ which rlwrap > /dev/null 2>&1 && alias guile="rlwrap guile"
 #source $HOME/.coderc
 export TERM=xterm-256color
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
 alias activate='source env/bin/activate'
 
 alias manage='python manage.py'
@@ -51,6 +47,7 @@ alias runserver='python manage.py runserver'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias cout='git checkout'
 alias gd='git diff'
 alias pull='git pull'
 alias push='git push'
