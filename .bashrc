@@ -16,7 +16,7 @@ export EDITOR=vim
 #set -o vi
 
 source ~/.git-completion.bash
-export PS1='\[\033[01;35m\]\u@\h\[\033[01;33m\]\w\[\033[01;31m\]$(__git_ps1)\[\033[01;35m\] \$\[\033[00m\] '
+export PS1='\[\033[01;33m\]\w\[\033[01;31m\]$(__git_ps1)\[\033[01;35m\] \$\[\033[00m\] '
 if [ $TERM = "screen" ]
 then
     # If we're using screen, include <ESC>k<ESC>\
@@ -39,6 +39,7 @@ which rlwrap > /dev/null 2>&1 && alias guile="rlwrap guile"
 export TERM=xterm-256color
 
 alias activate='source env/bin/activate'
+alias llactivate='. .venv/bin/activate'
 
 alias manage='python manage.py'
 alias test='python manage.py test'
@@ -52,3 +53,40 @@ alias gd='git diff'
 alias pull='git pull'
 alias push='git push'
 alias stash='git stash'
+
+alias gitgone="git fetch -p && git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -D"
+
+alias backup='rsync -aAXHv --exclude={"\.*","processing*","go/*","snap*","ResponsivelyApp*","*.desktop"} /home/mari/ /media/mari/Backup/mari/'
+
+alias dc="docker-compose"
+complete -F _complete_alias dc
+alias dcr="docker-compose run"
+complete -F _complete_alias dcr
+alias dcrr="docker-compose run --rm"
+complete -F _complete_alias dcrr
+alias dce="docker-compose exec"
+complete -F _complete_alias dce
+alias dcu="docker-compose up"
+complete -F _complete_alias dcu
+alias dcub="docker-compose up --build"
+complete -F _complete_alias dcub
+alias dcd="docker-compose down"
+complete -F _complete_alias dcd
+alias dcl="docker-compose logs -f --tail 200"
+complete -F _complete_alias dcl
+# Docker stuff
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+export COMPOSE_HTTP_TIMEOUT=250
+export USER_ID=$(id -u)
+export USERID=$(id -u)
+
+
+
+PATH=/usr/bin/node:$PATH
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
